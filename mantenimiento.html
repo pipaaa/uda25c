@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mantenimiento</title>
+  <!-- Montserrat Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="mantenimiento.css" />
 </head>
 <body>
@@ -20,16 +22,16 @@
 
   <script>
     const video = document.getElementById('introVideo');
+    video.volume = 1.0; // Volumen máximo
+
     const updateMessage = document.getElementById('updateMessage');
     const downloadBtn = document.getElementById('downloadBtn');
 
-    // Al acabar el video, ocultamos el video y mostramos el mensaje
     video.addEventListener('ended', () => {
       video.style.display = 'none';
       updateMessage.classList.add('show');
     });
 
-    // Descargar PDF al clicar botón
     downloadBtn.addEventListener('click', () => {
       const link = document.createElement('a');
       link.href = 'estado_uda25 (3).pdf';
