@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <script src="mantenimiento.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mantenimiento – UDA25</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- ❌ Opción 1: COMENTA el favicon para probar si el error viene de ahí -->
-  <!-- <link rel="icon" href="logo.png" /> -->
+  <title>Mantenimiento</title>
+  <link rel="stylesheet" href="mantenimiento.css" />
 </head>
 <body>
-  <!-- ✅ Sin loader, sin logo, solo vídeo -->
-  <div id="videoContainer">
-    <video id="introVideo" src="anuncio.mp4" autoplay muted playsinline></video>
-  </div>
 
-  <!-- ✅ Mensaje de mantenimiento -->
-  <div id="maintenanceMessage">
-    <h2>Estamos actualizando los contenidos</h2>
-    <p>
-      Gracias por tu paciencia. Mientras tanto, aquí tienes un mensaje sobre el estado de Pipaon Esperientziak:
-    </p>
-    <a href="estado_uda25 (3).pdf" download class="download-btn">Descargar PDF</a>
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="anuncio.mp4" type="video/mp4" />
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <div id="updateMessage">
+    <h2>Se están actualizando los contenidos</h2>
+    <button id="downloadBtn" type="button">Descargar estado actividades</button>
   </div>
 
   <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('videoContainer').style.display = 'none';
-        document.getElementById('maintenanceMessage').style.display = 'flex';
-        document.body.style.overflow = 'auto';
-      }, 60000); // o duración real del video
+    const video = document.getElementById('introVideo');
+    const updateMessage = document.getElementById('updateMessage');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Al acabar el video, ocultamos el video y mostramos el mensaje
+    video.addEventListener('ended', () => {
+      video.style.display = 'none';
+      updateMessage.classList.add('show');
+    });
+
+    // Descargar PDF al clicar botón
+    downloadBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.href = 'estado_uda25 (3).pdf';
+      link.download = 'estado_uda25 (3).pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     });
   </script>
+
 </body>
 </html>
