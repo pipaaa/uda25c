@@ -1,4 +1,22 @@
 window.addEventListener('load', () => {
+  // Control de mantenimiento
+  const enMantenimiento = true; // Cambia a false para saltar mantenimiento
+
+  if (enMantenimiento) {
+    // Si está en mantenimiento, redirige a mantenimiento.html
+    if (!window.location.href.includes('mantenimiento.html')) {
+      window.location.href = 'mantenimiento.html';
+      return; // Para no ejecutar más código aquí
+    }
+  } else {
+    // Si NO está en mantenimiento y estamos en mantenimiento.html, redirige a index.html
+    if (window.location.href.includes('mantenimiento.html')) {
+      window.location.href = 'index.html';
+      return;
+    }
+  }
+
+  // Tu código original empieza aquí
   const loader = document.getElementById('loader');
   const logo = document.getElementById('logo');
 
