@@ -158,59 +158,66 @@ html {
     height: 80vh;
     border-radius: 16px;
   }
-  /* ... (todo tu CSS anterior intacto) ... */
-
-/* VIDEO */
-#videoContainer {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: black;
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
+/* Estilos para que el video ocupe toda la pantalla y esté centrado */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    font-family: Arial, sans-serif;
 }
 
-#introVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+video#introVideo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
 }
 
-/* MANTENIMIENTO */
-#maintenanceMessage {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-color: #000;
-  color: white;
-  z-index: 10001;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 2rem;
-  font-size: 1.2rem;
+/* Contenedor del mensaje centrado */
+#updateMessage {
+    display: none; /* se mostrará tras el video */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111; /* fondo oscuro */
+    color: white;
+    z-index: 10;
+
+    /* centrado flexbox */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
 }
 
-.download-btn {
-  margin-top: 1.5rem;
-  padding: 1rem 2rem;
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 1rem;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-  transition: background-color 0.3s ease;
+#updateMessage h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
 }
 
-.download-btn:hover {
-  background-color: #e0e0e0;
+#updateMessage button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
 }
 
-/* ... el resto de tu CSS sigue igual ... */
-
+#updateMessage button:hover {
+    background-color: #0056b3;
 }
