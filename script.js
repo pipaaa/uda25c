@@ -1,5 +1,5 @@
 // ⚙️ Activar o desactivar modo actualización
-const actualizacion = true;
+const actualizacion = false;
 
 window.addEventListener('load', () => {
   if (actualizacion) {
