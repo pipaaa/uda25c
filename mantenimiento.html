@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mantenimiento – UDA25</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="logo.png" />
+</head>
+<body>
+  <!-- Video de introducción -->
+  <div id="videoContainer">
+    <video id="introVideo" src="anuncio.mp4" autoplay muted playsinline></video>
+  </div>
+
+  <!-- Mensaje de mantenimiento -->
+  <div id="maintenanceMessage">
+    <h2>Estamos actualizando los contenidos</h2>
+    <p>
+      Gracias por tu paciencia. Mientras tanto, aquí tienes un mensaje sobre el estado de Pipaon Esperientziak:
+    </p>
+    <a href="estado_uda25 (3).pdf" download class="download-btn">Descargar PDF</a>
+  </div>
+
+  <script>
+    // Esperar 60 segundos (o lo que dure el video) y luego mostrar el mensaje
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('videoContainer').style.display = 'none';
+        document.getElementById('maintenanceMessage').style.display = 'flex';
+        document.body.style.overflow = 'auto';
+      }, 60000);
+    });
+  </script>
+</body>
+</html>
