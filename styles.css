@@ -158,4 +158,59 @@ html {
     height: 80vh;
     border-radius: 16px;
   }
+  /* ... (todo tu CSS anterior intacto) ... */
+
+/* VIDEO */
+#videoContainer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+}
+
+#introVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* MANTENIMIENTO */
+#maintenanceMessage {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  color: white;
+  z-index: 10001;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.download-btn {
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* ... el resto de tu CSS sigue igual ... */
+
 }
