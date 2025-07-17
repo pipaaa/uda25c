@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
   // Control de mantenimiento
-  const enMantenimiento = true; // Cambia a false para saltar mantenimiento
+  const enMantenimiento = false; // Cambia a false para saltar mantenimiento
 
   if (enMantenimiento) {
     // Si está en mantenimiento, redirige a mantenimiento.html
