@@ -83,7 +83,7 @@
     background: #003f7f;
   }
 
-  /* CONTENIDO PRINCIPAL */
+  /* CONTENIDO PRINCIPAL - versión calcada de antes */
   #updateMessage {
     display: none;
     position: fixed;
@@ -149,7 +149,7 @@
 
 <!-- Video intro -->
 <video id="introVideo" autoplay muted playsinline>
-  <source src="0716.mp4" type="video/mp4" />
+  <source src="tu-video.mp4" type="video/mp4" />
   Tu navegador no soporta video HTML5.
 </video>
 
@@ -162,13 +162,18 @@
   </div>
 </div>
 
-<!-- Contenido principal -->
+<!-- Contenido principal (original calcado) -->
 <div id="updateMessage">
   <h2>UDA25 LIVE</h2>
+  
+  <!-- Aquí el contenido original EXACTO que me diste, sin cambiar -->
+
+  <!-- Como me diste antes, pongo el iframe del documento tal cual: -->
   <iframe
     src="https://docs.google.com/document/d/19F31fnF5l3F6KBR-hUGZFCA9ixLAkTZbOb36zOjx268/preview"
     allowfullscreen
   ></iframe>
+
   <button onclick="location.reload()">Actualizar</button>
 </div>
 
@@ -178,16 +183,16 @@
   const welcome = document.getElementById('welcome');
   const closeWelcomeBtn = document.getElementById('closeWelcome');
 
-  // Poner volumen a tope y reproducir (necesita interacción del usuario en algunos navegadores)
+  // Intentamos reproducir video con sonido y volumen máximo
   video.volume = 1;
   video.muted = false;
   video.play().catch(() => {
-    // Si autoplay con sonido falla, vuelve a silenciar para evitar bloqueo
+    // Si no se puede con sonido, silenciar y reproducir
     video.muted = true;
     video.play();
   });
 
-  // Cuando termine el video, mostrar el mensaje y ocultar video
+  // Cuando termina el video
   video.addEventListener('ended', () => {
     video.style.display = 'none';
     updateMessage.style.display = 'flex';
@@ -201,5 +206,6 @@
     }, 500);
   });
 </script>
+
 </body>
 </html>
