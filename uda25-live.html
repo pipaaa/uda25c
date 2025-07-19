@@ -13,6 +13,15 @@
 </head>
 <body>
   <div class="background"></div>
+  <!-- Anuncio de bienvenida -->
+<div id="welcome" class="welcome-modal">
+  <div class="welcome-content">
+    <h2>Bienvenido a UDA25 LIVE</h2>
+    <p>Consulta aquí en tiempo real el estado del viaje.</p>
+    <button id="closeWelcome">Entrar</button>
+  </div>
+</div>
+
 
   <div class="container">
     <header class="fade-in">
@@ -42,5 +51,14 @@
       <p>&copy; 2025 UDA25 Experiences · Todos los derechos reservados.</p>
     </footer>
   </div>
+  <script>
+  // Cerrar modal de bienvenida
+  document.getElementById('closeWelcome').addEventListener('click', () => {
+    const welcome = document.getElementById('welcome');
+    welcome.classList.add('hidden');
+    setTimeout(() => (welcome.style.display = 'none'), 500);
+  });
+</script>
+
 </body>
 </html>
