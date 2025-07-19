@@ -1,211 +1,201 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>UDA25 LIVE - Estado del viaje</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-<style>
-  /* RESET & BASE */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-  }
-  body, html {
-    width: 100%; height: 100%;
-    background-color: #000;
-    overflow: hidden;
-    color: white;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UDA25 LIVE – Estado del Viaje</title>
 
-  /* VIDEO INTRO */
-  #introVideo {
-    position: fixed;
-    top: 50%; left: 50%;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: 10000;
-    background: black;
-  }
+  <!-- Fuente Montserrat (Premium) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  /* MODAL BIENVENIDA */
-  .welcome-modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(10,20,30,0.85);
-    display: flex;
-    justify-content: center; align-items: center;
-    z-index: 11000;
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  .welcome-modal.hidden {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-  }
-  .welcome-content {
-    background: white;
-    border-radius: 20px;
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
-    padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    animation: slideInUp 0.7s ease;
-  }
-  .welcome-content h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(to right, #0058a3, #33a0ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .welcome-content p {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-  .welcome-content button {
-    background: #0058a3;
-    color: white;
-    font-weight: 700;
-    padding: 0.8rem 2rem;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s ease;
-  }
-  .welcome-content button:hover {
-    background: #003f7f;
-  }
+  <!-- CSS Premium -->
+  <link rel="stylesheet" href="uda25-live.css" />
+  <style>
+    /* Estilos para el video intro */
+    #introVideo {
+      position: fixed;
+      top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 20000;
+      background: black;
+    }
 
-  /* CONTENIDO PRINCIPAL - versión calcada de antes */
-  #updateMessage {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: #111;
-    color: white;
-    z-index: 9000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-  #updateMessage h2 {
-    margin-bottom: 20px;
-    font-size: 3em;
-    background: linear-gradient(45deg, #33a0ff, #0058a3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  #updateMessage iframe {
-    width: 90vw;
-    height: 70vh;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-  }
-  #updateMessage button {
-    margin-top: 2rem;
-    font-size: 1.2em;
-    padding: 12px 30px;
-    cursor: pointer;
-    border: none;
-    border-radius: 40px;
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-  #updateMessage button:hover {
-    background-color: #0056b3;
-  }
+    /* Oculta el contenido mientras se ve el video y modal */
+    body.loading #contentContainer {
+      display: none;
+    }
 
-  /* Animaciones */
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  @keyframes slideInUp {
-    from {
+    /* Modal bienvenida */
+    .welcome-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,20,30,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 21000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .welcome-modal.hidden {
       opacity: 0;
-      transform: translateY(30px);
+      transition: opacity 0.5s ease;
+      pointer-events: none;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    .welcome-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      font-family: 'Montserrat', sans-serif;
+      animation: slideInUp 0.7s ease;
     }
-  }
-</style>
+    .welcome-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #0058a3, #33a0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .welcome-content p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .welcome-content button {
+      background: #0058a3;
+      color: white;
+      font-weight: 700;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .welcome-content button:hover {
+      background: #003f7f;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="loading">
 
-<!-- Video intro -->
-<video id="introVideo" autoplay muted playsinline>
-  <source src="0716.mp4" type="video/mp4" />
-  Tu navegador no soporta video HTML5.
-</video>
+  <!-- VIDEO INTRO -->
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="tu-video.mp4" type="video/mp4" />
+    Tu navegador no soporta video HTML5.
+  </video>
 
-<!-- Modal bienvenida -->
-<div id="welcome" class="welcome-modal">
-  <div class="welcome-content">
-    <h2>Bienvenido a UDA25 LIVE</h2>
-    <p>Consulta aquí en tiempo real el estado del viaje.</p>
-    <button id="closeWelcome">Entrar</button>
+  <!-- MODAL BIENVENIDA -->
+  <div id="welcome" class="welcome-modal" style="display:none;">
+    <div class="welcome-content">
+      <h2>Bienvenido a UDA25 LIVE</h2>
+      <p>Consulta aquí en tiempo real el estado del viaje.</p>
+      <button id="closeWelcome">Entrar</button>
+    </div>
   </div>
-</div>
 
-<!-- Contenido principal (original calcado) -->
-<div id="updateMessage">
-  <h2>UDA25 LIVE</h2>
-  
-  <!-- Aquí el contenido original EXACTO que me diste, sin cambiar -->
+  <!-- CONTENIDO PRINCIPAL -->
+  <div id="contentContainer">
+    <div class="background"></div>
+    <!-- Anuncio de bienvenida -->
+    <div id="welcome" class="welcome-modal" style="display:none;">
+      <div class="welcome-content">
+        <h2>Bienvenido a UDA25 LIVE</h2>
+        <p>Consulta aquí en tiempo real el estado del viaje.</p>
+        <button id="closeWelcomeDup">Entrar</button>
+      </div>
+    </div>
 
-  <!-- Como me diste antes, pongo el iframe del documento tal cual: -->
-  <iframe
-    src="https://docs.google.com/document/d/19F31fnF5l3F6KBR-hUGZFCA9ixLAkTZbOb36zOjx268/preview"
-    allowfullscreen
-  ></iframe>
+    <div class="container">
+      <header class="fade-in">
+        <h1 class="title">UDA25 <span>LIVE</span></h1>
+        <p class="subtitle">Seguimiento en tiempo real del viaje organizado más exclusivo del verano.</p>
+      </header>
 
-  <button onclick="location.reload()">Actualizar</button>
-</div>
+      <section class="iframe-container slide-in-up">
+        <iframe
+          src="https://docs.google.com/document/d/19F31fnF5l3F6KBR-hUGZFCA9ixLAkTZbOb36zOjx268/preview"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      </section>
 
-<script>
-  const video = document.getElementById('introVideo');
-  const updateMessage = document.getElementById('updateMessage');
-  const welcome = document.getElementById('welcome');
-  const closeWelcomeBtn = document.getElementById('closeWelcome');
+      <div class="cta fade-in-delay">
+        <a
+          href="https://docs.google.com/document/d/19F31fnF5l3F6KBR-hUGZFCA9ixLAkTZbOb36zOjx268/edit?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Abrir en Google Docs
+        </a>
+      </div>
 
-  // Intentamos reproducir video con sonido y volumen máximo
-  video.volume = 1;
-  video.muted = false;
-  video.play().catch(() => {
-    // Si no se puede con sonido, silenciar y reproducir
-    video.muted = true;
-    video.play();
-  });
+      <footer class="fade-in-delay">
+        <p>&copy; 2025 UDA25 Experiences · Todos los derechos reservados.</p>
+      </footer>
+    </div>
+  </div>
 
-  // Cuando termina el video
-  video.addEventListener('ended', () => {
-    video.style.display = 'none';
-    updateMessage.style.display = 'flex';
-  });
+  <script>
+    const video = document.getElementById('introVideo');
+    const welcome = document.getElementById('welcome');
+    const content = document.getElementById('contentContainer');
+    const closeWelcomeBtn = document.getElementById('closeWelcome');
+    const closeWelcomeBtnDup = document.getElementById('closeWelcomeDup');
 
-  // Botón para cerrar modal bienvenida
-  closeWelcomeBtn.addEventListener('click', () => {
-    welcome.classList.add('hidden');
-    setTimeout(() => {
-      welcome.style.display = 'none';
-    }, 500);
-  });
-</script>
+    // Mostrar video al cargar, ocultar contenido
+    document.body.classList.add('loading');
 
+    // Cuando el video termine, ocultamos video y mostramos modal bienvenida
+    video.addEventListener('ended', () => {
+      video.style.display = 'none';
+      welcome.style.display = 'flex';
+      document.body.classList.remove('loading');
+    });
+
+    // Función para cerrar modal y mostrar contenido
+    function closeWelcomeModal() {
+      welcome.classList.add('hidden');
+      setTimeout(() => {
+        welcome.style.display = 'none';
+        content.style.display = 'block';
+      }, 500);
+    }
+
+    // Eventos para cerrar modal
+    closeWelcomeBtn?.addEventListener('click', closeWelcomeModal);
+    closeWelcomeBtnDup?.addEventListener('click', closeWelcomeModal);
+
+    // Para que el video se intente reproducir con volumen a tope (si el navegador lo permite)
+    video.volume = 1;
+    video.muted = false;
+    video.play().catch(() => {
+      // Si no deja, silenciar y reproducir
+      video.muted = true;
+      video.play();
+    });
+  </script>
 </body>
 </html>
