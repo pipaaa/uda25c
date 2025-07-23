@@ -4,8 +4,8 @@ window.addEventListener('load', () => {
 
   if (enMantenimiento) {
     // Si está en mantenimiento, redirige a mantenimiento.html
-    if (!window.location.href.includes('uda25-live.html')) {
-      window.location.href = 'uda25-live.html';
+    if (!window.location.href.includes('cuenta-atras.html')) {
+      window.location.href = 'cuenta-atras.html';
       return; // Para no ejecutar más código aquí
     }
   } else {
